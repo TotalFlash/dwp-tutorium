@@ -21,5 +21,8 @@ RUN service apache2 restart
 
 # Copy sourec code
 COPY ./src/ /var/www/html/
+WORKDIR /var/www/html/
+
+RUN rm index.html
 
 RUN chown -R www-data:www-data /var/www/html/

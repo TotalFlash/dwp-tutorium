@@ -9,7 +9,7 @@ class AbstractController {
   protected string $html = '';
   protected string $title = '';
 
-  public function __construct(string $actionName, string $controllerName) {
+  public function __construct(string $controllerName, string $actionName) {
     $this->actionName = $actionName;
     $this->controllerName = $controllerName;
   }
@@ -19,7 +19,7 @@ class AbstractController {
     $it->loadTemplatefile('layout.html');
     $placeholder = [
       'title' => $this->title,
-      'content' => $this->html,
+      'content' => $this->html
     ];
     $it->setVariable($placeholder);
     echo $it->get();
