@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  php:
+    container_name: tutorium_webserver
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DB_NAME: 'tutorium'
+      DB_HOST: 'jarowsky.de:3303'
+      DB_USER: 'niclas'
+      DB_PASSWORD: '#!asdf1234'
+    ports:
+      - "82:80"
+      - "444:443"
+
+  mariadb:
+    container_name: tutorium_mariadb
+    image: mariadb:10.4
+    environment:
+      MYSQL_ROOT_PASSWORD: '#!asdf1234'
+      # Timezone
+      TZ: Europe/Berlin
+    restart: always
+    volumes:
+      - ./configs/mariadb/init.sql:/docker-entrypoint-initdb.d/1.sql
+      - /home/debian/tutorium:/var/lib/mysql
+    ports:
+      - "3303:3306"
