@@ -8,6 +8,7 @@ class SharedController extends AbstractController {
 
   function start(): void {
     $it = $this->createIntegratedTemplate();
+    // Sollte eine Seite keine Platzhalter oder blöcke enthalten, muss die Funktion $it->loadTemplateFile, wie folgt aufgerufen werden: $it->loadTemplatefile('start.html', false, false);
     $it->loadTemplatefile('start.html');
 
     $placeholder = [
